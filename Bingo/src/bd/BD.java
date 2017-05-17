@@ -18,14 +18,15 @@ public class BD
             _comando =
             new MeuPreparedStatement (
             "com.microsoft.sqlserver.jdbc.SQLServerDriver",
-            "jdbc:sqlserver://SERVIDOR:1433;databasename=BD",
-            "USUARIO", "SENHA");
+            "jdbc:sqlserver://fs5:1433;databasename=bdsqlac19",
+            "bdsqlac19", "Iepiy7");
 
             _livros = new Livros (); //um como esse para cada classe DAO
         }
         catch (Exception erro)
         {
             System.err.println ("Problemas de conexao com o BD");
+            erro.printStackTrace();
             System.exit(0); // aborta o programa
         }
         

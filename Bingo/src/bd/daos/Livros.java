@@ -16,8 +16,7 @@ public class Livros
             String sql;
 
             sql = "SELECT * " +
-                  "FROM LIVROS " +
-                  "WHERE CODIGO = ?";
+                  "FROM usuario";
 
             BD.comando.prepareStatement (sql);
 
