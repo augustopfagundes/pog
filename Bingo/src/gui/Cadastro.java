@@ -44,12 +44,7 @@ public class Cadastro {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		JPanel panel = new JPanel();
-		frame.getContentPane().add(panel, BorderLayout.CENTER);
-		
-		JLabel lblTeste = new JLabel("TESTE");
-		panel.add(lblTeste);
+		frame.getContentPane().setLayout(new BorderLayout(0, 0));
 	}
 
 }
