@@ -11,6 +11,7 @@ public class Jogo {
 		
 		try {
 			System.out.println(livros.getLivros());
+			System.out.println("Teste Commit");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
