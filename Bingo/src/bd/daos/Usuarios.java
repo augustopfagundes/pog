@@ -5,7 +5,7 @@ import bd.*;
 import bd.core.*;
 import bd.dbos.*;
 
-public class Livros
+public class Usuarios
 {
 	public boolean buscarUsuario(long id) throws Exception
 	{

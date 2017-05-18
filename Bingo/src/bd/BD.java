@@ -6,12 +6,12 @@ import bd.daos.*;
 public class BD
 {
     public static final MeuPreparedStatement comando;
-    public static final Livros livros; //um como esse para cada classe DAO
+    public static final Usuarios livros; //um como esse para cada classe DAO
 
     static
     {
     	MeuPreparedStatement _comando = null;
-     	Livros               _livros  = null; //um como esse para cada classe DAO
+     	Usuarios               _livros  = null; //um como esse para cada classe DAO
 
     	try
         {
@@ -21,7 +21,7 @@ public class BD
             "jdbc:sqlserver://fs5:1433;databasename=bdsqlac19",
             "bdsqlac19", "Iepiy7");
 
-            _livros = new Livros (); //um como esse para cada classe DAO
+            _livros = new Usuarios (); //um como esse para cada classe DAO
         }
         catch (Exception erro)
         {

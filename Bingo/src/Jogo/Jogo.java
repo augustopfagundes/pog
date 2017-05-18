@@ -7,7 +7,7 @@ public class Jogo {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		Livros livros = new Livros();
+		Usuarios livros = new Usuarios();
 		
 		try {
 			System.out.println(livros.getLivros());
