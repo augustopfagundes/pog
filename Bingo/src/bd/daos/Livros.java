@@ -7,7 +7,135 @@ import bd.dbos.*;
 
 public class Livros
 {
-    public boolean cadastrado (int codigo) throws Exception
+	public boolean buscarUsuario(long id) throws Exception
+	{
+		boolean retorno = false;
+		
+		try
+		{
+			String sql;
+			
+			sql = "SELECT * " +
+				  "FROM USUARIO" +
+				  " WHERE ID = ?";
+			
+			BD.comando.prepareStatement(sql);
+			
+			BD.comando.setLong(1, id);
+			
+			MeuResultSet resultado = (MeuResultSet)BD.comando.executeQuery();
+			
+			retorno = resultado.first();
+		}
+        catch (SQLException erro)
+        {
+            throw new Exception ("Erro ao procurar usuário");
+        }
+
+        return retorno;
+	}
+	
+	public void incluirUsuario(Usuario usuario) throws Exception
+	{
+		if(usuario == null)
+		{
+			throw new Exception("Usuário nao informado");
+		}
+		
+		try
+		{
+			String sql;
+			
+			sql = "INSERT INTO USUARIO" +
+				  " (id, eMail, senha, primeiraDataMes, QtdVitoriasMes, cartela)" +
+				  " VALUES (?,?,?,?,?,?)";
+			
+			BD.comando.prepareStatement(sql);
+			
+			BD.comando.setLong(1, usuario.getId());
+			BD.comando.setString(2, usuario.geteMail());
+			BD.comando.setString(3, usuario.getSenha());
+			BD.comando.setDate(4, usuario.getPrimeiraDataMes());
+			BD.comando.setInt(5, usuario.getQtdVitoriasMes());
+			BD.comando.setArray(6, usuario.getCartela()); //Gerar cartela em outro método
+			
+			BD.comando.executeUpdate();
+			BD.comando.commit();
+		}
+        catch (SQLException erro)
+        {
+            throw new Exception ("Erro ao inserir usuário");
+        }
+	}
+	
+	public void excluirUsuario(long id) throws Exception
+	{
+        if (!buscarUsuario (id))
+        {
+        	throw new Exception ("Nao cadastrado");
+        }
+
+        try
+        {
+            String sql;
+
+            sql = "DELETE FROM USUARIO " +
+                  "WHERE ID=?";
+
+            BD.comando.prepareStatement (sql);
+
+            BD.comando.setLong (1, id);
+
+            BD.comando.executeUpdate();
+            BD.comando.commit();        
+        }
+        catch (SQLException erro)
+        {
+            throw new Exception ("Erro ao excluir usuário");
+        }
+				
+	}
+	
+    public void alterarUsuario (Usuario usuario) throws Exception
+    {
+        if (usuario==null)
+        {
+        	throw new Exception ("Usuário nao fornecido");
+        }
+            
+
+        if (!buscarUsuario (usuario.getId()))
+        {
+        	throw new Exception ("Nao cadastrado");
+        }
+
+        try
+        {
+            String sql;
+
+            sql = "UPDATE USUARIO " +
+                  "SET EMAIL=? " +
+                  "SET SENHA=? " +
+                  "WHERE ID = ?";
+
+            BD.comando.prepareStatement (sql);
+
+            BD.comando.setString (1, usuario.geteMail());
+            BD.comando.setString  (2, usuario.getSenha());
+            BD.comando.setLong    (3, usuario.getId());
+
+            BD.comando.executeUpdate ();
+            BD.comando.commit        ();
+        }
+        catch (SQLException erro)
+        {
+            throw new Exception ("Erro ao atualizar dados de livro");
+        }
+    }
+
+	
+	/*-*-* Início Deletar *-*-*/
+    public boolean cadastrado (int codigo) throws Exception //feito
     {
         boolean retorno = false;
 
@@ -54,7 +182,7 @@ public class Livros
         return retorno;
     }
 
-    public void incluir (Livro livro) throws Exception
+    public void incluir (Usuario livro) throws Exception //feito
     {
         if (livro==null)
             throw new Exception ("Livro nao fornecido");
@@ -83,7 +211,7 @@ public class Livros
         }
     }
 
-    public void excluir (int codigo) throws Exception
+    public void excluir (int codigo) throws Exception // feito
     {
         if (!cadastrado (codigo))
             throw new Exception ("Nao cadastrado");
@@ -107,7 +235,7 @@ public class Livros
         }
     }
 
-    public void alterar (Livro livro) throws Exception
+    public void alterar (Usuario livro) throws Exception //feito
     {
         if (livro==null)
             throw new Exception ("Livro nao fornecido");
@@ -139,9 +267,9 @@ public class Livros
         }
     }
 
-    public Livro getLivro (int codigo) throws Exception
+    public Usuario getLivro (int codigo) throws Exception
     {
-        Livro livro = null;
+        Usuario livro = null;
 
         try
         {
@@ -160,7 +288,7 @@ public class Livros
             if (!resultado.first())
                 throw new Exception ("Nao cadastrado");
 
-            livro = new Livro (resultado.getInt   ("CODIGO"),
+            livro = new Usuario (resultado.getInt   ("CODIGO"),
                                resultado.getString("NOME"),
                                resultado.getFloat ("PRECO"));
         }
@@ -194,4 +322,5 @@ public class Livros
 
         return resultado;
     }
+    /*-*-* Fim Deletar *-*-*/
 }
