@@ -129,8 +129,69 @@ public class Livros
         }
         catch (SQLException erro)
         {
-            throw new Exception ("Erro ao atualizar dados de livro");
+            throw new Exception ("Erro ao atualizar dados do usuario");
         }
+    }
+    
+    public Usuario obterUsuario (long id) throws Exception
+    {
+        Usuario usuario = null;
+
+        try
+        {
+            String sql;
+
+            sql = "SELECT * " +
+                  "FROM USUARIO " +
+                  "WHERE ID = ?";
+
+            BD.comando.prepareStatement (sql);
+
+            BD.comando.setLong (1, id);
+
+            MeuResultSet resultado = (MeuResultSet)BD.comando.executeQuery ();
+
+            if (!resultado.first())
+            {
+            	throw new Exception ("Nao cadastrado");
+            }
+
+            usuario = new Usuario (resultado.getLong   ("ID"),
+                               resultado.getString("EMAIL"),
+                               resultado.getString ("SENHA"),
+                               resultado.getDate("PRIMEIRADATAMES"),
+                               resultado.getInt("QTDVITORIASMES"),
+                               resultado.getArray("CARTELA"));
+        }
+        catch (SQLException erro)
+        {
+            throw new Exception ("Erro ao procurar usuário");
+        }
+
+        return usuario;
+    }
+
+    public MeuResultSet obterUsuarios () throws Exception
+    {
+        MeuResultSet resultado = null;
+
+        try
+        {
+            String sql;
+
+            sql = "SELECT * " +
+                  "FROM USUARIO";
+
+            BD.comando.prepareStatement (sql);
+
+            resultado = (MeuResultSet)BD.comando.executeQuery ();
+        }
+        catch (SQLException erro)
+        {
+            throw new Exception ("Erro ao recuperar usuarios");
+        }
+
+        return resultado;
     }
 
 	

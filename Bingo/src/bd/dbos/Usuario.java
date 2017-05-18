@@ -36,6 +36,17 @@ public class Usuario
 	public Array getCartela() { return cartela; }
 	public void setCartela(Array cartela) { this.cartela = cartela; }
 	
+    public Usuario (long id, String email, String senha, Date primeiraDataMes, int qtdVitoriasMes, Array cartela) throws Exception
+    {
+    	this.setId(id);
+    	this.seteMail(email);
+    	this.setSenha(senha);
+    	this.setPrimeiraDataMes(primeiraDataMes);
+    	this.setQtdVitoriasMes(qtdVitoriasMes);
+    	this.setCartela(cartela);
+    }
+
+	
 	/*-*-* Início deletar  *-*-*/ 
     public void setCodigo (int codigo) throws Exception
     {
