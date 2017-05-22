@@ -2,6 +2,12 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
+<<<<<<< HEAD
 	<classpathentry kind="lib" path="//FS2/andre/POO.Mat/2017-05-04/sqljdbc4.jar"/>
+=======
+	<classpathentry kind="lib" path="C:/Users/Maria Thereza/Documents/ws_projeto/POOLib/sqljdbc4.jar"/>
+	<classpathentry kind="lib" path="jgoodies-forms-1.8.0.jar" sourcepath="jgoodies-forms-1.8.0-sources.jar"/>
+	<classpathentry kind="lib" path="miglayout15-swing.jar" sourcepath="miglayout-src.zip"/>
+>>>>>>> refs/remotes/origin/dev_gui
 	<classpathentry kind="output" path="bin"/>
 </classpath>
